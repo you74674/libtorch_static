@@ -15,7 +15,7 @@ jobs:
         run: |
           echo "cache missed!"
           git submodule update --init --recursive
-        use: actions/cache/save@v4
+        uses: actions/cache/save@v4
         with:
           path: ./pytorch
           key: pytorch
