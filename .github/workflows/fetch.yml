@@ -28,6 +28,7 @@ jobs:
         id: cache
         with:
           path: ./pytorch
+          key: pytorch
       - if: steps.cache.outputs.cache-hit != 'true'
         run: |
           echo "cache missed!"
