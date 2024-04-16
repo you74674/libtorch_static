@@ -15,6 +15,7 @@ jobs:
         run: |
           echo "cache missed!"
           git submodule update --init --recursive
+      - if: steps.cache.outputs.cache-hit != 'true'
         uses: actions/cache/save@v4
         with:
           path: ./pytorch
