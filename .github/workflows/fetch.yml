@@ -17,11 +17,11 @@ jobs:
   fetch:
     runs-on: windows-2022
     steps:
-      - uses: .github/acitons/fetch.yml
+      - uses: ./.github/acitons/fetch
   build:
     runs-on: windows-2022
     steps:
-      - uses: .github/actions/fetch.yml
+      - uses: ./.github/actions/fetch
       - run: build.bat ${{ inputs.config }}
       - uses: actions/upload-artifact@v4
         with:
