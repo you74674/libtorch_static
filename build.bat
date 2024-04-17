@@ -14,8 +14,8 @@ call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Buil
 
 set CMAKE_BUILD_TYPE=%CONFIG%
 ::set BUILD_LIBTORCH_CPU_WITH_DEBUG=ON #RelWithDebInfo
-set USE_NINJA=OFF
-set CMAKE_GENERATOR=Visual Studio 17 2022
+set USE_NINJA=ON
+set CMAKE_GENERATOR=Ninja
 
 set CMAKE_VERBOSE_MAKEFILE=1
 
