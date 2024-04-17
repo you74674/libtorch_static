@@ -1,6 +1,18 @@
 name: CI
 on:
   workflow_dispatch:
+    inputs: 
+      config:
+        type: choice
+        required: true
+        default: "Debug"
+        options:
+          - Release
+          - Debug
+      min:
+        type: boolean
+        required: true
+        default: false
 jobs:
   fetch:
     runs-on: windows-2022
@@ -24,3 +36,12 @@ jobs:
             pytorch
             .git/modules
           key: pytorch
+  build:
+    needs: fetch
+    runs-on: windows-2022
+    steps:
+      - run: build.bat ${{ inputs.config }}
+      - uses: action/upload-artifact@v4
+        with:
+          name: libtorch_${{ inputs.config }}_${{ inputs.min }}
+          path: pytorch/install/
