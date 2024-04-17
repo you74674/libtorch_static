@@ -12,7 +12,9 @@ runs:
       run: |
         echo "cache missed!"
         git submodule update --init --recursive
-        git submodule update --remote pytorch/third_party/pocketfft/
+        cd pytorch
+        git submodule update --remote third_party/pocketfft/
+        cd ..
       shell: pwsh
     - if: steps.cache.outputs.cache-hit != 'true'
       uses: actions/cache/save@v4
