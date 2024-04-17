@@ -1,0 +1,22 @@
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/checkout@v4
+    - uses: actions/cache/restore@v4
+      id: cache
+      with:
+        path: |
+          pytorch
+          .git/modules
+        key: pytorch
+    - if: steps.cache.outputs.cache-hit != 'true'
+      run: |
+        echo "cache missed!"
+        git submodule update --init --recursive
+    - if: steps.cache.outputs.cache-hit != 'true'
+      uses: actions/cache/save@v4
+      with:
+        path: |
+          pytorch
+          .git/modules
+        key: pytorch

@@ -17,29 +17,11 @@ jobs:
   fetch:
     runs-on: windows-2022
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/cache/restore@v4
-        id: cache
-        with:
-          path: |
-            pytorch
-            .git/modules
-          key: pytorch
-      - if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          echo "cache missed!"
-          git submodule update --init --recursive
-      - if: steps.cache.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            pytorch
-            .git/modules
-          key: pytorch
+      - uses: .github/acitons/fetch.yml
   build:
-    needs: fetch
     runs-on: windows-2022
     steps:
+      - uses: .github/actions/fetch.yml
       - run: build.bat ${{ inputs.config }}
       - uses: actions/upload-artifact@v4
         with:
