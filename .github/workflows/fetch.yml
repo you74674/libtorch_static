@@ -41,7 +41,7 @@ jobs:
     runs-on: windows-2022
     steps:
       - run: build.bat ${{ inputs.config }}
-      - uses: action/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
           name: libtorch_${{ inputs.config }}_${{ inputs.min }}
           path: pytorch/install/
