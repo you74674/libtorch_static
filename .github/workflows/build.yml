@@ -10,16 +10,19 @@ on:
           - Release
           - Debug
       min:
-        type: boolean
+        type: choice
         required: true
-        default: true
+        default: "ON"
+        options:
+            - ON
+            - OFF
 jobs:
   build:
     runs-on: windows-2022
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/fetch
-      - run: ./build.bat ${{ inputs.config }}
+      - run: ./build.bat ${{ inputs.config }} ${{ inputs.min }}
       - uses: actions/upload-artifact@v4
         with:
           name: libtorch_${{ inputs.config }}_${{ inputs.min }}
