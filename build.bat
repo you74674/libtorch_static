@@ -89,6 +89,6 @@ set CMAKE_BUILD_PARALLEL_LEVEL=6
 ::cd scripts
 ::call build_windows.bat
 python pytorch\tools\build_libtorch.py
-cmake --install pytorch\build --prefix pytorch\build\libtorch\%CONFIG% --config=%CONFIG%
+cmake --install build --prefix install\libtorch\%CONFIG% --config=%CONFIG%
 
 endlocal
